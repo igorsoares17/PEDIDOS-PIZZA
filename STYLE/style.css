@@ -91,12 +91,22 @@
         align-items: center;
     }
 
+    .quantity {
+
+        width: 100%;
+        height: 3vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 3%;
+    }
+
     .price {
 
         text-align: center;
-        width: max-content;
-        height: max-content;
         font-size: 1.2vw;
+        text-align: center;
     }
 
     .cxButtons {
@@ -107,9 +117,10 @@
         align-items: center;
         height: 10%;
         width: 50%;
+   
     }
 
-    .qtdItem {
+    .qtdItem, .qtdItemMinus {
 
         width: 40%;
         border-radius: 40px;
@@ -117,7 +128,7 @@
 
     }
 
-    .qtdItem:hover {
+    .qtdItem:hover, .qtdItemMinus:hover {
 
         cursor: pointer;
         background-color: rgb(55, 145, 55);
@@ -264,17 +275,32 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        height: 10vh;
+        height: 12vh;
+    
+    }
+
+    .quantity {
+
+        width: 100%;
+        height: 6vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
     }
 
     .price {
 
-        width: max-content;
         text-align: center;
-        width: max-content;
         font-size: 4vw;
         height: 4vh;
         margin-top: 2%;
+    }
+
+    .number {
+
+        font-size: 5vw;
     }
 
     .cxButtons {
@@ -283,22 +309,22 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: 50%;
+        width: 60%;
         height: 8vh;
+       
     }
 
-    .qtdItem {
+    .qtdItem, .qtdItemMinus {
 
-        width: 70%;
+        width: 40%;
         height: 7vh;
-        margin: auto;
         border-radius: 40px;
         background-color: rgb(57, 171, 57);
         font-size: 4vw;
 
     }
 
-    .qtdItem:hover {
+    .qtdItem:hover, .qtdItemMinus:hover {
 
         cursor: pointer;
         background-color: rgb(55, 145, 55);
@@ -446,27 +472,41 @@
         height: 10vh;
     }
 
+    .quantity {
+
+        width: 100%;
+        height: 8vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
     .price {
 
-        width: max-content;
         text-align: center;
-        width: max-content;
         font-size: 7vw;
         height: 4vh;
         margin-top: 2%;
     }
 
+    .number {
+        
+        font-size: 9vw;
+    }
+
     .cxButtons {
 
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
         width: 50%;
-        height: 8vh;
+        height: max-content;
+        gap: 4%;
+
     }
 
-    .qtdItem {
+    .qtdItem, .qtdItemMinus {
 
         width: 70%;
         height: 7vh;
@@ -477,7 +517,12 @@
 
     }
 
-    .qtdItem:hover {
+    .qtdItemMinus {
+
+        margin-top: 8%;
+    }
+
+    .qtdItem:hover, .qtdItemMinus:hover {
 
         cursor: pointer;
         background-color: rgb(55, 145, 55);
@@ -525,7 +570,8 @@
         text-align: center;
         justify-content: center;
         align-items: center;
-        font-size: 6vw;
+        font-size: 8vw;
+        margin-top: 3%;
         margin-bottom: 10%;
     }
 
