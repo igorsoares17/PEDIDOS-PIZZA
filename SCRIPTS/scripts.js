@@ -2,6 +2,7 @@ class Request {
 
     constructor() {
 
+        this.numbers = [];
         this.amounts1 = [];
         this.amounts2 = [30, 32, 32, 35, 35, 37.5];
         this.result = 0;
@@ -11,49 +12,43 @@ class Request {
             this.amounts1[x] = 0;
         }
 
-        this.buttons = document.getElementsByClassName("qtdItem");
+        this.buttonsAdd = document.getElementsByClassName("qtdItem");
         this.cxButtons = document.getElementsByClassName("cxButtons");
         this.areaPrice = document.getElementsByClassName("quantity");
-        this.clickListener();
+        this.corpButtons = Array.from(document.getElementsByClassName("cxButtons"))
 
     }
 
-    clickListener() {
+    clickListener(idElement) {
 
-        Array.from(this.buttons).forEach((btn, index) => {
+        
 
-            btn.addEventListener('click', () => {
+        if (this.amounts1[idElement] == 0) {
 
-                if (this.amounts1[index] == 0) {
+            this.amounts1[idElement] += 1;
+            this.createBtnSub(idElement);
+            this.createQuantity(idElement);
+                    
+        }
 
-                    this.createBtnSub(index);
-                    this.createQuantity(index);   
-                } 
+        else {
 
-                else {
-
-
-                }
-
-                this.amounts1[index] += 1;
-                this.addQuantity(index);
-                this.total = document.getElementById("zero");
-                this.getResult();
-
-            })
-        })
+            this.amounts1[idElement] += 1;
+            
+        }
+                
+        this.addQuantity(idElement);
+        this.total = document.getElementById("zero");
+        this.getResult();
     }
 
-    createBtnSub(index) {
+    createBtnSub(idElement) {
 
-        let arrayButtons = Array.from(this.cxButtons);
-        let newButton = document.createElement("button");
-        arrayButtons[index].appendChild(newButton);
-        newButton.setAttribute("class", "qtdItemMinus");
-        newButton.innerHTML = "-"
-
-        arrayButtons[index].style.justifyContent = "space-around"; 
-
+        this.corpButtons[idElement].innerHTML = `
+        <button id="${idElement}" class="qtdItem" onclick="request.clickListener(this.id)">+</button>
+        <button onclick="request.buttonSubListener(${idElement})" class="qtdItemMinus">-</button>
+        `;
+        this.buttonsAdd = document.getElementsByClassName("qtdItem");
     }
 
     getResult() {
@@ -63,19 +58,42 @@ class Request {
 
     }
 
-    createQuantity(index) {
+    createQuantity(idElement) {
 
-        this.number = document.createElement("p");
-        this.number.setAttribute("class", "number")
-        this.areaPrice[index].appendChild(this.number);
+        this.numbers[idElement] = document.createElement("p");
+        this.numbers[idElement].setAttribute("class", "number")
+        this.areaPrice[idElement].appendChild(this.numbers[idElement]);
     }
 
-    addQuantity(index) {
+    addQuantity(idElement) {
 
-        this.number.innerHTML = `(${this.amounts1[index]})`;
-        this.areaPrice[index].style.justifyContent = "center";
+        this.numbers[idElement].innerHTML = `(${this.amounts1[idElement]})`;
+        this.areaPrice[idElement].style.justifyContent = "center";
     }
 
+    buttonSubListener(idElement) {
+
+        if (this.amounts1[idElement] == 1) {
+
+            this.amounts1[idElement] -= 1;
+
+            let buttonsSub = Array.from(document.getElementsByClassName("qtdItemMinus"));
+            let buttonRemove = buttonsSub[idElement];
+
+            this.numbers[idElement].remove();
+            buttonRemove.remove();
+
+        }
+
+        else {
+
+            this.amounts1[idElement] -= 1;
+            this.addQuantity(idElement);
+        }
+                
+            this.getResult();
+                
+    }    
 }
 
-let request = new Request('');
+let request = new Request('');  
