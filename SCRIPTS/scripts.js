@@ -40,13 +40,14 @@ class Request {
         this.addQuantity(idElement);
         this.total = document.getElementById("zero");
         this.getResult();
+       
     }
 
     createBtnSub(idElement) {
 
         this.corpButtons[idElement].innerHTML = `
         <button id="${idElement}" class="qtdItem" onclick="request.clickListener(this.id)">+</button>
-        <button onclick="request.buttonSubListener(${idElement})" class="qtdItemMinus">-</button>
+        <button id="${idElement}" onclick="request.buttonSubListener(${idElement})" class="qtdItemMinus">-</button>
         `;
         this.buttonsAdd = document.getElementsByClassName("qtdItem");
     }
@@ -76,13 +77,10 @@ class Request {
         if (this.amounts1[idElement] == 1) {
 
             this.amounts1[idElement] -= 1;
-
-            let buttonsSub = Array.from(document.getElementsByClassName("qtdItemMinus"));
-            let buttonRemove = buttonsSub[idElement];
-
             this.numbers[idElement].remove();
-            buttonRemove.remove();
 
+            let buttonRemove = document.querySelector(`button[id="${idElement}"][class="qtdItemMinus"]`);
+            buttonRemove.remove();
         }
 
         else {
@@ -92,7 +90,6 @@ class Request {
         }
                 
             this.getResult();
-                
     }    
 }
 
